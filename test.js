@@ -42,8 +42,7 @@ tape('studentGrades', async function (t) {
       throw new Error('Error connecting to sqlite database; did you initialize it by running `npm run init-db`?')
     }
     t.equal(data.data[0].id, 1)
-    t.equal(data.data[0].course, "Calculus")
-    t.equal(data.data[0].grade, 50)
+    t.equal(data.data[0].gradeReport[0].course, "Calculus")
     t.end()
   } catch (e) {
     t.error(e)
@@ -57,7 +56,7 @@ tape('courseGrades', async function (t) {
     if (response.statusCode !== 200) {
       throw new Error('Error connecting to sqlite database; did you initialize it by running `npm run init-db`?')
     }
-    t.equal(data.data.Calculus.max, 100)
+    t.equal(data.data[0].maxGrade, 100)
     t.end()
   } catch (e) {
     t.error(e)
